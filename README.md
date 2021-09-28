@@ -5,8 +5,8 @@ Will probably implement the bare HTTP/1.1 specifications and maybe in the future
 
 
 ## Code
-server.c - HTTP Driver
-    Run with `make all && ./server.ext`
+server.c - HTTP Driver.
+    Run with `make all && ./server.exe`
 
 # Documentation
 
