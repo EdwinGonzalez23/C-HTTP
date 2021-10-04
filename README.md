@@ -1,14 +1,24 @@
 # About
-This is a learning project to familiarize myself better with C.
+An HTTP server built using C
 
-Will probably implement the bare HTTP/1.1 specifications and maybe in the future HTTP/2.x or above.
+## Learning Objectives
+* Learn C
+* Become more familiar with HTTP
+* Learn how to use Unit Testing
+* Get a better understand of interacting with Operating System APIs
+* Learn to work with other web servers, such as NGINX
 
+# Project Plans
+1. Implement a basic HTTP server with C that follows the HTTP 1.1 specifications
+2. Upgrade to HTTP 2.X
+3. Serve PHP scripts
 
 ## Code
-server.c - HTTP Driver.
-    Run with `make all && ./server.exe`
+Run with `make all && ./server.exe`  
+Navigate to http://localhost:8080/ and you will see the G-HTTP landing page
 
 # Documentation
+Run server and navigate to localhost:8080
 
 ## Sockets
 

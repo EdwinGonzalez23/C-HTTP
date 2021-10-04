@@ -6,9 +6,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define PORT 7777
+#define PORT 8080
 #define LISTEN_BACKLOG 50
-#define BUFFER_SIZE 30000
+#define BUFFER_SIZE 1000000
 
 /*int argc, char *argv[]*/
 int main() {
@@ -18,7 +18,49 @@ int main() {
     struct sockaddr_in address;
     int address_len = sizeof(address);
 
-    char *response = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 12\n\nHello world!";
+    // Default G-HTTP landing page
+    FILE *fptr;
+    fptr = fopen("index.html", "r");
+
+    if (fptr == NULL) {
+        perror("Failed to open G-HTTP landing page: See https://man7.org/linux/man-pages/man3/fopen.3.html");
+        exit(EXIT_FAILURE);
+    }
+
+    char g_land_buffer[BUFFER_SIZE + 1];
+    if (fptr != NULL) {
+        size_t new_len = fread(g_land_buffer, sizeof(char), BUFFER_SIZE, fptr);
+        if (ferror(fptr) != 0) {
+            perror("Failed to read G-HTTP Landing Page into buffer.");
+            exit(EXIT_FAILURE);
+        }
+        else {
+            g_land_buffer[new_len++] = '\0';
+        }
+    }
+    fclose(fptr);
+
+    /*
+        Prep G-HTTP Landing page
+    */
+
+    //TODO: Get this working
+    // int content_len_int = strlen(g_land_buffer);
+    // char content_len[content_len_int];
+    // sprintf(content_len, "Content-Length: %d\n\n", content_len_int);
+    // printf("%s",content_len);
+
+    char *response = "HTTP/1.1 200 OK\nContent-Type: text/html\n\n";
+
+    int g_land_resp_len = strlen(response) + strlen(g_land_buffer);
+    char g_land_resp[g_land_resp_len + 1];
+
+    strcat(g_land_resp, response);
+    strcat(g_land_resp, g_land_buffer);
+    g_land_resp[g_land_resp_len] = '\0';
+
+    response = NULL;
+    response = g_land_resp;
 
     /*
         AF_INET - IPv4, AF_UNSPEC - Allow IPv4 or IPv6
