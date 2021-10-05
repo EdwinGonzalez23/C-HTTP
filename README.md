@@ -13,12 +13,9 @@ An HTTP server built using C
 2. Upgrade to HTTP 2.X
 3. Serve PHP scripts
 
-## Code
+## Install/Run
 Run with `make all && ./server.exe`  
 Navigate to http://localhost:8080/ and you will see the G-HTTP landing page
-
-# Documentation
-Run server and navigate to localhost:8080
 
 ## Sockets
 
