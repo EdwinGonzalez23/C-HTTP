@@ -44,20 +44,22 @@ int main() {
         Prep G-HTTP Landing page
     */
 
-    //TODO: Get this working
-    // int content_len_int = strlen(g_land_buffer);
-    // char content_len[content_len_int];
-    // sprintf(content_len, "Content-Length: %d\n\n", content_len_int);
-    // printf("%s",content_len);
+    // Prepare Headers
+    int content_len = strlen(g_land_buffer);
+    char content_len_header[content_len];
 
-    char *response = "HTTP/1.1 200 OK\nContent-Type: text/html\n\n";
+    sprintf(content_len_header, "Content-Length: %d\n\n", content_len);
 
-    int g_land_resp_len = strlen(response) + strlen(g_land_buffer);
+    char *response = "HTTP/1.1 200 OK\nContent-Type: text/html\n";
+
+    int g_land_resp_len = strlen(response) + strlen(g_land_buffer) + strlen(content_len_header);
     char g_land_resp[g_land_resp_len + 1];
 
+    // Combine HTTP Response text
     strcat(g_land_resp, response);
+    strcat(g_land_resp, content_len_header);
     strcat(g_land_resp, g_land_buffer);
-    g_land_resp[g_land_resp_len] = '\0';
+    g_land_resp[g_land_resp_len++] = '\0';
 
     response = NULL;
     response = g_land_resp;
