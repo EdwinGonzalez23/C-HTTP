@@ -8,7 +8,7 @@
 
 #include "structs/http_handler.h"
 
-#define PORT 8080
+#define PORT 8081
 #define LISTEN_BACKLOG 50
 #define BUFFER_SIZE 1000000
 
@@ -122,7 +122,7 @@ int main() {
     /*
       CHECK REQUESTED RESOURCE PATH
     */
-    if (strcmp("\\", http_handler.method)) {
+    if (strcmp("/", http_handler.requested_resource_file_path) == 0) {
       write(new_socket, response, strlen(response));
     } else {
       // MAKE THIS HTTP ERROR RESOURCE NOT FOUND
