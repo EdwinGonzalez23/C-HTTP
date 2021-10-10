@@ -1,0 +1,18 @@
+server.c:191:10: error: Returning pointer to local variable 'response_buff' that will be invalid when returning. [returnDanglingLifetime]
+  return response;
+         ^
+server.c:190:14: note: Array decayed to pointer here.
+  response = response_buff;
+             ^
+server.c:181:8: note: Variable created here.
+  char response_buff[landing_page_len + 1];
+       ^
+server.c:191:10: note: Returning pointer to local variable 'response_buff' that will be invalid when returning.
+  return response;
+         ^
+server.c:172:28: error: Uninitialized variable: landing_page_buffer [uninitvar]
+  int content_len = strlen(landing_page_buffer);
+                           ^
+server.c:184:10: error: Uninitialized variable: response_buff [uninitvar]
+  strcat(response_buff, response);
+         ^

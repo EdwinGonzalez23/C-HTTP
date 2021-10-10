@@ -26,7 +26,7 @@ void check_initial_response_line(struct http_handler *h1) {
 
   int header_position = 0;
   while (ptr != NULL) {
-
+    
     switch (header_position) {
     case 0:
       h1->method = ptr;
